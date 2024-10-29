@@ -42,6 +42,7 @@
         const vsSource = `
             attribute vec4 aVertexPosition;
             void main(void) {
+                gl_PointSize = 5.0;
                 gl_Position = aVertexPosition;
             }
         `;
@@ -49,7 +50,7 @@
         // Fragment shader program
         const fsSource = `
             void main(void) {
-                gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0); // Black color
+                gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0); // Green color
             }
         `;
 
@@ -128,11 +129,9 @@
         // Now create an array of positions for the square.
         const positions = [
             -0.5,  0.5,
-                -0.5,  -0.5,
-            -0.5, 0,
-                0.25, 0.5,
-            -0.5, 0,
-                0.25, -0.5,
+            0.5,  0.5,
+            -0.5, -0.5,
+            0.5, -0.5,
         ];
 
         // Now pass the list of positions into WebGL to build the
@@ -183,8 +182,8 @@
         // Draw the square
         {
             const offset = 0;
-            const vertexCount = 6;
-            gl.drawArrays(gl.LINES, offset, vertexCount);
+            const vertexCount = 4;
+            gl.drawArrays(gl.TRIANGLE_STRIP, offset, vertexCount);
         }
     }
     </script>
